@@ -1,0 +1,82 @@
+<!-- 
+ Date: 11/16/2018
+ Author: Dinesh Ghimire
+ Title: login.php
+ description: This include login form
+ -->
+<!--This php code will enhance the -->
+<?php/*
+session_start();
+if(isset($_POST['submit'])){
+$_SESSION['loggedin'] = TRUE;
+$URL = $_SESSION['redirectURL'];
+header('location:'.'');
+}
+*/
+ ?>
+ <!-- This will count time -->
+ <?php
+    session_start();
+?>
+
+<html>
+<center>
+<body>
+<body style="background-color:Red ;">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <title>Form Login</title>
+</head>
+
+<body OnLoad="document.main.username.focus();">
+
+	
+<table >
+	<tr>
+		<td colspan="2">	
+<h4>Enter your Username and Email Address to continue</h4> 
+</td>
+</tr>
+<!-- create the main form with an input text boxes -->
+<form name="main" method="Post" action="comment.php"> 
+<tr> 
+<td>Username:</td> 
+<td><input name="username" type="text" size="50" required></td> 
+</tr> 
+<tr> 
+<td>Email Address:</td> 
+<td><input name="emailadd" type="email" size="50" required></td> 
+</tr>
+<tr> 
+<td>Password:</td> 
+<td><input name="password" type="password" size="50" required></td> 
+</tr>
+<tr> 
+<td colspan="2" align="center"><input name="submit" type="submit" value="Submit"></td> 
+</tr>
+</table>
+</form>
+
+</body>
+</center>
+</html>
+<?php
+    if (isset($_POST['submit'])) {
+        $v1 = "username";
+        $v2 = "password";
+        $v3 = $_POST['username'];
+        $v4 = $_POST['password'];
+        if ($v1 == $v3 && $v2 == $v4) {
+            $_SESSION['luser'] = $v1;
+            $_SESSION['start'] = time(); // Taking now logged in time.
+            // Ending a session in 30 minutes from the starting time.
+            $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
+            header('Location: http://localhost/sdev300/comment.php');
+        } else {
+            echo "Please enter the username or password again!";
+        }
+    }
+?>
+
+
